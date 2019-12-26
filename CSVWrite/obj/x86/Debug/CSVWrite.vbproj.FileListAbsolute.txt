@@ -1,0 +1,9 @@
+C:\Users\yagi_yo\Documents\GitHub\CSVWrite\CSVWrite\bin\Debug\CSVWrite.exe
+C:\Users\yagi_yo\Documents\GitHub\CSVWrite\CSVWrite\bin\Debug\CSVWrite.pdb
+C:\Users\yagi_yo\Documents\GitHub\CSVWrite\CSVWrite\bin\Debug\CSVWrite.xml
+C:\Users\yagi_yo\Documents\GitHub\CSVWrite\CSVWrite\obj\x86\Debug\CSVWrite.Resources.resources
+C:\Users\yagi_yo\Documents\GitHub\CSVWrite\CSVWrite\obj\x86\Debug\CSVWrite.vbproj.GenerateResource.Cache
+C:\Users\yagi_yo\Documents\GitHub\CSVWrite\CSVWrite\obj\x86\Debug\CSVWrite.exe
+C:\Users\yagi_yo\Documents\GitHub\CSVWrite\CSVWrite\obj\x86\Debug\CSVWrite.xml
+C:\Users\yagi_yo\Documents\GitHub\CSVWrite\CSVWrite\obj\x86\Debug\CSVWrite.pdb
+C:\Users\yagi_yo\Documents\GitHub\CSVWrite\CSVWrite\obj\x86\Debug\CSVWrite.TextWriteForm.resources
