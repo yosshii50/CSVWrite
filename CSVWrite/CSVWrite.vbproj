@@ -72,13 +72,20 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CSVCell.vb" />
     <Compile Include="CSVCol.vb" />
-    <Compile Include="CSVRow.vb" />
-    <Compile Include="TextWriteForm.vb">
+    <Compile Include="CSVGrid.vb" />
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TextWriteForm.Designer.vb">
-      <DependentUpon>TextWriteForm.vb</DependentUpon>
+    <Compile Include="TestWriteForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestWriteForm.Designer.vb">
+      <DependentUpon>TestWriteForm.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -98,8 +105,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="TextWriteForm.resx">
-      <DependentUpon>TextWriteForm.vb</DependentUpon>
+    <EmbeddedResource Include="TestWriteForm.resx">
+      <DependentUpon>TestWriteForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

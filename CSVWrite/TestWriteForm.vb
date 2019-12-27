@@ -1,4 +1,7 @@
-﻿Public Class TextWriteForm
+﻿Option Explicit On '型宣言を強制
+Option Strict On 'タイプ変換を厳密に
+
+Public Class TestWriteForm
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
 
@@ -33,7 +36,7 @@
         Next
         sw.Close()
 
-        Button.Text = (Now - StTime).ToString
+        button.Text = (Now - StTime).ToString
 
         '0.01秒
 
@@ -54,7 +57,7 @@
         Next
         sw.Close()
 
-        Button.Text = (Now - StTime).ToString
+        button.Text = (Now - StTime).ToString
 
         '0.6秒
 
@@ -76,7 +79,7 @@
         Next
         sw.Close()
 
-        Button.Text = (Now - StTime).ToString
+        button.Text = (Now - StTime).ToString
 
         '1.8秒
         'こっちの方が遅い

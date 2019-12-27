@@ -7,3 +7,4 @@ C:\Users\yagi_yo\Documents\GitHub\CSVWrite\CSVWrite\obj\x86\Debug\CSVWrite.exe
 C:\Users\yagi_yo\Documents\GitHub\CSVWrite\CSVWrite\obj\x86\Debug\CSVWrite.xml
 C:\Users\yagi_yo\Documents\GitHub\CSVWrite\CSVWrite\obj\x86\Debug\CSVWrite.pdb
 C:\Users\yagi_yo\Documents\GitHub\CSVWrite\CSVWrite\obj\x86\Debug\CSVWrite.TextWriteForm.resources
+C:\Users\yagi_yo\Documents\GitHub\CSVWrite\CSVWrite\obj\x86\Debug\CSVWrite.TestWriteForm.resources
