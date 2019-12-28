@@ -105,6 +105,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TestWriteForm.resx">
       <DependentUpon>TestWriteForm.vb</DependentUpon>
     </EmbeddedResource>

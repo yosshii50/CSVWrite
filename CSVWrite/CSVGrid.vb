@@ -72,72 +72,48 @@ Public Class CSVGrid
 
         End If
 
-        WrkCSVRow(AddRowPos).Wrk()
-        CSVCell(2)
+        'タイトルが一致しているか確認
 
+        '一致していない場合
+        '次のCol領域を検索
 
+        '------------------------------------------------------------------------------- Cellの領域作成
 
-
-
-
-
-        WrkCSVRow(AddRowPos)
-
-
-
-        WrkCSVCell.cou()
-
-
-        If IsNextRow = True Then
-
-        End If
-
-        If WrkData Is Nothing Then
-            ReDim WrkData(, )
+        If WrkCSVRow(AddRowPos).WrkCSVCell Is Nothing Then
+            ReDim WrkCSVRow(AddRowPos).WrkCSVCell(AddColPos) '←こっちは省略できるかも ※※※
         Else
-            ReDim Preserve WrkData(, )
+            ReDim Preserve WrkCSVRow(AddRowPos).WrkCSVCell(AddColPos)
         End If
 
-        If WrkCSVCol.ColType = CSVCol.ColType_Enum.StrX Then
-            Return """" & Me.CellData & """"
-        Else
-        End If
+        WrkCSVRow(AddRowPos).WrkCSVCell(AddColPos) = New CSVCell
 
-
+        'データセット
+        WrkCSVRow(AddRowPos).WrkCSVCell(AddColPos).CellData = Data
 
     End Sub
 
+    'CSV文字列取得
+    Public Function GetCSV() As String
 
+        Dim WrkStr As String = ""
 
-    'カラムズ
-    Private _CSVCols() As CSVCol
-    Public ReadOnly Property CSVCols() As CSVCol()
-        Get
-            Return _CSVCols
-        End Get
-    End Property
+        For Each WrkCol As CSVCol In WrkCSVCol
+            If Not WrkCol Is Nothing Then
+                WrkStr = WrkStr & WrkCol.ColTitle & ","
+            End If
+        Next
+        WrkStr = WrkStr & vbCrLf
 
-    'カラムの追加
-    Public Sub CSVColAdd(ByVal ColTitle As String, ByVal ColType As CSVCol.ColType_Enum, ByVal ColData As String)
+        For WrkRow As Integer = 1 To AddRowPos
+            For Each WrkCell As CSVCell In WrkCSVRow(WrkRow).WrkCSVCell
+                If Not WrkCell Is Nothing Then
+                    WrkStr = WrkStr & WrkCell.CellData & ","
+                End If
+            Next
+            WrkStr = WrkStr & vbCrLf
+        Next
 
-        Dim WrkCSVCol As CSVCol
-
-        WrkCSVCol = New CSVCol
-
-        With WrkCSVCol
-            .ColTitle = ColTitle
-            .ColType = ColType
-        End With
-
-        If _CSVCols Is Nothing Then
-            ReDim _CSVCols(0)
-        Else
-            ReDim Preserve _CSVCols(_CSVCols.Count)
-        End If
-
-        _CSVCols(_CSVCols.Count - 1) = WrkCSVCol
-
-    End Sub
-
+        Return WrkStr
+    End Function
 
 End Class
