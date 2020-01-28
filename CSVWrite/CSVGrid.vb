@@ -32,6 +32,9 @@ Public Class CSVGrid
 
     Private AddRowPos As Integer = 0 '1から使用
     Private AddColPos As Integer = 0 '1から使用
+    Public Sub AddCell(ByVal Data As Decimal, ByVal ColTitle As String)
+        Call AddCell(Data.ToString, ColTitle)
+    End Sub
     Public Sub AddCell(ByVal Data As String)
         Call AddCell(Data, "")
     End Sub
@@ -148,7 +151,6 @@ Public Class CSVGrid
 
     End Function
 
-
     'CSV文字列取得
     Public Function GetCSV() As String
 
@@ -157,7 +159,7 @@ Public Class CSVGrid
         'タイトル部分
         For WrkCol As Integer = 1 To _CSVCol.Count - 1
             If Not _CSVCol(WrkCol) Is Nothing Then
-                WrkStr = WrkStr & _CSVCol(WrkCol).ColTitle
+                WrkStr = WrkStr & """" & _CSVCol(WrkCol).ColTitle & """"
             End If
             If WrkCol <> _CSVCol.Count - 1 Then
                 WrkStr = WrkStr & ","
@@ -179,7 +181,13 @@ Public Class CSVGrid
 
                 If _CSVRow(WrkRow)._CSVCell.Count > WrkCol Then
                     If Not _CSVRow(WrkRow)._CSVCell(WrkCol) Is Nothing Then
-                        WrkStr = WrkStr & _CSVRow(WrkRow)._CSVCell(WrkCol).CellData
+
+                        If _CSVCol(WrkCol).ColType = CSVCol.ColType_Enum.Num9 Then
+                            WrkStr = WrkStr & _CSVRow(WrkRow)._CSVCell(WrkCol).CellData
+                        Else
+                            WrkStr = WrkStr & """" & _CSVRow(WrkRow)._CSVCell(WrkCol).CellData & """"
+                        End If
+
                     End If
                 End If
                 If WrkCol <> _CSVCol.Count - 1 Then
@@ -191,6 +199,65 @@ Public Class CSVGrid
         Next
 
         Return WrkStr
+    End Function
+
+    Public Function SaveCSV(ByVal WrkCSVFileName As String) As Boolean
+
+        Dim WrkFile As System.IO.StreamWriter = Nothing
+
+        If FileOutOpen(WrkFile, WrkCSVFileName) = False Then
+            Return False
+        End If
+
+
+        WrkFile.Write(Me.GetCSV())
+        WrkFile.Close()
+
+        Return True
+    End Function
+
+    'CSV保存用にオープン
+    Private Function FileOutOpen(ByRef File As System.IO.StreamWriter, ByVal FilePathName As String) As Boolean
+
+        Dim PathName As String
+
+        PathName = System.IO.Path.GetDirectoryName(FilePathName) 'パス部分のみ取得
+
+        'フォルダが存在するか確認
+        If System.IO.Directory.Exists(PathName) Then
+            '存在する場合
+            '何もしない
+        Else
+            '存在しない場合
+
+            Try
+
+                'フォルダ作成
+                System.IO.Directory.CreateDirectory(PathName)
+
+            Catch ex As Exception
+                Call MessageBox.Show(ex.ToString, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+
+                '再帰的呼び出し
+                '↑自動的に再帰作成されるので、処理不要
+
+            End Try
+
+        End If
+
+        Try
+            'File = My.Computer.FileSystem.OpenTextFileWriter(FilePathName, False, System.Text.Encoding.Default)
+            File = New System.IO.StreamWriter(FilePathName, False, System.Text.Encoding.GetEncoding("shift_jis"))
+
+        Catch ex As System.IO.IOException
+            Call MessageBox.Show("ファイルへの書き込みに失敗しました。" & vbCrLf & vbCrLf & ex.ToString, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            Return False
+        Catch ex As Exception
+            Call MessageBox.Show(ex.ToString, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            Return False
+        End Try
+
+        Return True
     End Function
 
 End Class
